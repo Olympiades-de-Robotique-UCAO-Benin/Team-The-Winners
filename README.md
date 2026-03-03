@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ORC 2026](https://img.shields.io/badge/ORC_2026-Compétition_Officielle-f59e0b?style=for-the-badge)
+![ORU 2026](https://img.shields.io/badge/ORU_2026-Compétition_Officielle-f59e0b?style=for-the-badge)
 ![Équipe #2](https://img.shields.io/badge/Équipe-%232-f59e0b?style=for-the-badge)
 ![EGEI](https://img.shields.io/badge/EGEI-f59e0b?style=for-the-badge)
 ![UCAO-UUC](https://img.shields.io/badge/UCAO--UUC-Bénin-0057A8?style=for-the-badge)
@@ -15,7 +15,7 @@
 
 ## 🏫 Présentation
 
-**Team The Winners** est l'une des 6 équipes participantes à l'**Olympiade de Robotique UCAO 2026 (ORC 2026)**, compétition inter-facultés organisée à l'Université Catholique de l'Afrique de l'Ouest — Unité Universitaire du Bénin.
+**Team The Winners** est l'une des 6 équipes participantes à l'**Olympiade de Robotique UCAO 2026 (ORU 2026)**, compétition inter-facultés organisée à l'Université Catholique de l'Afrique de l'Ouest — Unité Universitaire du Bénin.
 
 | Informations | Détails |
 |---|---|
@@ -28,10 +28,10 @@
 
 ## 📚 Ressources utiles
 
-- 📖 [Guide Technique Officiel ORC 2026](https://github.com/Olympiades-de-Robotique-UCAO-Benin/guide-technique-officiel)
+- 📖 [Guide Technique Officiel ORU 2026](https://github.com/Olympiades-de-Robotique-UCAO-Benin/guide-technique-officiel)
 - 🧠 [Ressources de formation](https://github.com/Olympiades-de-Robotique-UCAO-Benin/ressources-formations)
 - 🌐 [Site officiel de la compétition](https://olympiades-de-robotique-ucao-benin.github.io)
-- 🏠 [Organisation GitHub ORC](https://github.com/Olympiades-de-Robotique-UCAO-Benin)
+- 🏠 [Organisation GitHub ORU](https://github.com/Olympiades-de-Robotique-UCAO-Benin)
 
 ---
 
@@ -44,6 +44,6 @@ Pour toute question concernant la compétition :
 
 <div align="center">
 
-*ORC 2026 — Olympiade de Robotique UCAO-UUC Bénin*
+*ORU 2026 — Olympiade de Robotique UCAO-UUC Bénin*
 
 </div>
