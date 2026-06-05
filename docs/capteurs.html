@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capteurs — Team The Winners (ORC 2026)</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="topbar">
+    <a href="../index.html" class="topbar-logo">
+      <i class="fa-solid fa-robot"></i> THE WINNERS<span>.</span>
+    </a>
+    <div class="topbar-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="algorithme.html">Algorithme</a>
+      <a href="capteurs.html" class="active">Capteurs</a>
+      <a href="electronique.html">Électronique</a>
+      <a href="mechanique.html">Mécanique</a>
+      <a href="logiciel.html">Logiciel</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://github.com/Olympiades-de-Robotique-UCAO-Benin/Team-The-Winners" target="_blank" class="btn-github">
+        <i class="fa-brands fa-github"></i> Repository
+      </a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section-head">
+      <div class="hero-badge" style="align-self: center;">
+        <i class="fa-solid fa-eye"></i> SYSTÈME DE PERCEPTION
+      </div>
+      <h2 class="section-title">Capteurs et Acquisition de Données</h2>
+      <p class="section-desc">Description de la couche d'acquisition sensorielle permettant au robot de cartographier son environnement en temps réel.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 30px;">
+      
+      <!-- Card 1: IR Sensors -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-eye"></i> Barrette Infrarouge (Suivi de Ligne)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          Le suivi de la ligne au sol est opéré par 5 capteurs optiques de proximité infrarouges TCRT5000 montés en ligne sur un circuit imprimé frontal à environ 8 mm du sol.
+        </p>
+        <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border-left: 3px solid var(--primary); margin-bottom: 15px;">
+          <p style="font-size: 0.9rem; color: var(--text-primary); font-weight: 600; margin-bottom: 6px;">Principe de fonctionnement :</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Chaque capteur contient une diode émettrice infrarouge et un phototransistor récepteur. La diode émet un rayonnement invisible. Si le sol est clair (fond blanc), le rayon est réfléchi et capté (signal analogique bas). Si le sol est sombre (ligne noire), le rayon est absorbé, le transistor se bloque (signal analogique haut).
+          </p>
+        </div>
+        <p style="color: var(--text-secondary);">
+          L'espacement de 2.2 cm entre chaque capteur a été calculé en fonction de la largeur réglementaire de la ligne (1.9 cm) pour s'assurer qu'au moins un capteur chevauche toujours la transition noir/blanc lors des virages serrés.
+        </p>
+      </div>
+
+      <!-- Card 2: HC-SR04 -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-wave-square"></i> Capteur Ultrason Frontal (Détection d'obstacle)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          Le capteur HC-SR04 sert à prévenir les collisions frontales en mesurant la distance séparant le robot de tout objet présent sur la trajectoire.
+        </p>
+        <div class="modern-table-container" style="background: rgba(0,0,0,0.2); border-radius: 6px; padding: 10px; margin-bottom: 15px;">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur Typique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tension de service</td>
+                <td>5V CC</td>
+              </tr>
+              <tr>
+                <td>Angle de détection</td>
+                <td>&lt; 15 degrés</td>
+              </tr>
+              <tr>
+                <td>Portée utile</td>
+                <td>2 cm à 400 cm</td>
+              </tr>
+              <tr>
+                <td>Fréquence sonore</td>
+                <td>40 kHz</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color: var(--text-secondary);">
+          Le programme envoie un signal haut de 10 microsecondes sur la broche Trigger. Le capteur émet une salve ultrasonique de 8 impulsions. La broche Echo passe à l'état haut jusqu'au retour de l'écho. La durée de l'état haut permet de calculer la distance séparant le capteur de l'obstacle.
+        </p>
+      </div>
+
+      <!-- Card 3: Optionnels -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-circle-plus"></i> Extensions Sensorielles (Optionnelles)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          Pour les compétitions futures ou les tracés plus techniques, l'architecture du robot prend en charge d'autres capteurs :
+        </p>
+        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: var(--text-secondary);">
+          <li style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-muted); padding: 15px; border-radius: 6px;">
+            <h5 style="font-family: var(--font-tech); color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">Encodeurs Incrémentaux</h5>
+            <p style="font-size: 0.8rem;">Installés sur l'axe des moteurs pour mesurer la vitesse de rotation réelle des roues et effectuer de l'odométrie.</p>
+          </li>
+          <li style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-muted); padding: 15px; border-radius: 6px;">
+            <h5 style="font-family: var(--font-tech); color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">Centrale Inertielle (IMU)</h5>
+            <p style="font-size: 0.8rem;">Un gyroscope/accéléromètre MPU6050 pour mesurer les accélérations angulaires et corriger les dérapages latéraux.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>ORC 2026 — Olympiade de Robotique UCAO-UUC Bénin &nbsp;·&nbsp; Projet Académique de Recherche</p>
+    <p>Développé par la Team The Winners. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>

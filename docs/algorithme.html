@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithme — Team The Winners (ORC 2026)</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR (Docs Context) -->
+  <nav class="topbar">
+    <a href="../index.html" class="topbar-logo">
+      <i class="fa-solid fa-robot"></i> THE WINNERS<span>.</span>
+    </a>
+    <div class="topbar-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="algorithme.html" class="active">Algorithme</a>
+      <a href="capteurs.html">Capteurs</a>
+      <a href="electronique.html">Électronique</a>
+      <a href="mechanique.html">Mécanique</a>
+      <a href="logiciel.html">Logiciel</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://github.com/Olympiades-de-Robotique-UCAO-Benin/Team-The-Winners" target="_blank" class="btn-github">
+        <i class="fa-brands fa-github"></i> Repository
+      </a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section-head">
+      <div class="hero-badge" style="align-self: center;">
+        <i class="fa-solid fa-brain"></i> MODULE INTELLIGENCE & CONTRÔLE
+      </div>
+      <h2 class="section-title">Algorithme de Suivi de Ligne & Évitement</h2>
+      <p class="section-desc">Explication détaillée de la logique décisionnelle, de la boucle de rétroaction PID et du protocole d'évitement d'obstacles.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 30px;">
+      
+      <!-- Card 1: Résumé -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-circle-info"></i> Résumé de l'Approche
+        </h3>
+        <p style="color: var(--text-secondary);">
+          Le système d'intelligence embarqué du robot <strong>THE WINNERS</strong> repose sur une boucle d'asservissement en temps réel. Le robot lit les états des capteurs infrarouges de sol pour déterminer sa déviation angulaire et latérale par rapport à une ligne noire tracée sur fond clair. Si un obstacle frontal est détecté par le capteur de distance à ultrasons, le programme interrompt le suivi pour effectuer une manœuvre d'évitement latérale pré-calculée avant de ré-acquérir la ligne.
+        </p>
+      </div>
+
+      <!-- Card 2: Hypothèses matérielles -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-microchip"></i> Hypothèses Matérielles
+        </h3>
+        <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px; color: var(--text-secondary);">
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-check" style="color: var(--accent);"></i> 
+            <span><strong>Capteurs IR :</strong> 5 capteurs phototransistors disposés en ligne frontale perpendiculaire à la trajectoire.</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-check" style="color: var(--accent);"></i> 
+            <span><strong>Capteur de distance :</strong> Sonar ultrasonique frontal HC-SR04 pour l'évitement d'obstacle.</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-check" style="color: var(--accent);"></i> 
+            <span><strong>Motorisation :</strong> Propulsion différentielle constituée de deux moteurs CC pilotés en modulation de largeur d'impulsion (PWM).</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-check" style="color: var(--accent);"></i> 
+            <span><strong>Microcontrôleur :</strong> Raspberry Pi Pico (RP2040) gérant la logique temps réel.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 3: PID Logic -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-sliders"></i> Algorithme PID (Régulation Pondérée)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          L'erreur de position par rapport à la ligne est calculée à chaque itération en appliquant des coefficients de pondération aux 5 capteurs :
+        </p>
+        <div class="code-container" style="background: rgba(0,0,0,0.3); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+          <code style="color: var(--accent); font-family: var(--font-mono); font-size: 0.95rem;">
+            Erreur = (-2 * L2 - 1 * L1 + 0 * C + 1 * R1 + 2 * R2) / (Somme des lectures)
+          </code>
+        </div>
+        <p style="color: var(--text-secondary);">
+          Cette erreur alimente ensuite le régulateur PID pour calculer le correctif différentiel :
+        </p>
+        <ul style="list-style: none; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--text-secondary); margin-top: 10px;">
+          <li>⚡ <strong>Terme Proportionnel (P) :</strong> Kp * Erreur (correction directe instantanée).</li>
+          <li>⚡ <strong>Terme Intégral (I) :</strong> Ki * Somme des erreurs (élimine l'erreur statique en courbe).</li>
+          <li>⚡ <strong>Terme Dérivé (D) :</strong> Kd * (Erreur - Erreur_Précédente) (anticipe les virages brusques et amortit les oscillations).</li>
+        </ul>
+      </div>
+
+      <!-- Card 4: Évitement d'obstacle -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-shield-halved"></i> Gestion d'Évitement d'Obstacle
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          La machine à états finis du robot est structurée ainsi :
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; margin-bottom: 20px;">
+          <div style="background: rgba(0, 71, 255, 0.1); border: 1px solid var(--primary); padding: 15px; border-radius: 6px;">
+            <h5 style="color: var(--text-primary); font-family: var(--font-tech); font-size: 0.85rem; margin-bottom: 5px;">NORMAL</h5>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">Suivi de ligne via PID</span>
+          </div>
+          <div style="background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; padding: 15px; border-radius: 6px;">
+            <h5 style="color: var(--text-primary); font-family: var(--font-tech); font-size: 0.85rem; margin-bottom: 5px;">OBSTACLE</h5>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">Arrêt + manœuvre de contournement</span>
+          </div>
+          <div style="background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent); padding: 15px; border-radius: 6px;">
+            <h5 style="color: var(--text-primary); font-family: var(--font-tech); font-size: 0.85rem; margin-bottom: 5px;">RÉ-ACQUISITION</h5>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">Recherche active de la ligne</span>
+          </div>
+        </div>
+        <p style="color: var(--text-secondary);">
+          <strong>Protocole de contournement :</strong> Le robot s'arrête, tourne à droite à 45°, avance en ligne droite pour contourner l'obstacle, effectue un virage à gauche à 90° pour dépasser l'obstacle, puis pivote à gauche pour recouper la piste et ré-engager le suivi normal.
+        </p>
+      </div>
+
+      <!-- Card 5: Pseudocode -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-code"></i> Pseudocode Global de la Boucle
+        </h3>
+        <div class="code-container" style="background: #020206; border-radius: 6px; padding: 20px; overflow: auto; max-height: 400px;">
+          <pre><code style="font-family: var(--font-mono); font-size: 0.85rem; color: #c9d1d9;">
+<span class="code-keyword">while</span> (true) {
+  <span class="code-comment">// 1. Évitement prioritaire</span>
+  dist = readUltrasonicDistance();
+  <span class="code-keyword">if</span> (dist &lt; 15) {
+    state = STATE_OBSTACLE;
+  }
+
+  <span class="code-comment">// 2. Machine à états</span>
+  <span class="code-keyword">switch</span> (state) {
+    <span class="code-keyword">case</span> STATE_NORMAL:
+      readIRSensors();
+      error = calculateWeightedError();
+      correction = computePID(error);
+      setMotors(baseSpeed + correction, baseSpeed - correction);
+      <span class="code-keyword">break;</span>
+
+    <span class="code-keyword">case</span> STATE_OBSTACLE:
+      stopMotors();
+      executeContourManœuvre();
+      state = STATE_REACQUISITION;
+      <span class="code-keyword">break;</span>
+
+    <span class="code-keyword">case</span> STATE_REACQUISITION:
+      setMotors(slowSearchSpeed, -slowSearchSpeed); <span class="code-comment">// Pivot de recherche</span>
+      <span class="code-keyword">if</span> (lineDetected()) {
+        state = STATE_NORMAL;
+        clearPIDState();
+      }
+      <span class="code-keyword">break;</span>
+  }
+}
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>ORC 2026 — Olympiade de Robotique UCAO-UUC Bénin &nbsp;·&nbsp; Projet Académique de Recherche</p>
+    <p>Développé par la Team The Winners. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>

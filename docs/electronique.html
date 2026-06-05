@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electronique - Team The Winners</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav class="topbar">
+    <a href="../index.html" class="topbar-logo"><i class="fa-solid fa-robot"></i><span>The Winners</span></a>
+    <div class="topbar-nav open">
+      <a href="../index.html">Accueil</a>
+      <a href="algorithme.html">Algorithme</a>
+      <a href="capteurs.html">Capteurs</a>
+      <a href="electronique.html" class="active">Electronique</a>
+      <a href="mechanique.html">Mecanique</a>
+      <a href="logiciel.html">Logiciel</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section-head">
+      <span class="eyebrow"><i class="fa-solid fa-microchip"></i> Systeme de puissance</span>
+      <h2>Architecture electronique</h2>
+      <p>Cablage, alimentation et interconnexions materielles du robot suiveur de ligne.</p>
+    </div>
+
+    <div class="electronics-layout">
+      <div class="panel">
+        <h3>Composants cles</h3>
+        <table class="spec-table">
+          <tbody>
+            <tr><th>Controleur</th><td>Raspberry Pi Pico RP2040</td></tr>
+            <tr><th>Driver moteur</th><td>TB6612FNG double pont en H</td></tr>
+            <tr><th>Capteurs ligne</th><td>Barrette de 5 capteurs IR</td></tr>
+            <tr><th>Obstacle</th><td>Sonar ultrasonique HC-SR04</td></tr>
+            <tr><th>Regulation</th><td>Buck LM2596 vers 5V</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards-column">
+        <article class="mini-card">
+          <i class="fa-solid fa-bolt"></i>
+          <div>
+            <h3>Alimentation separee</h3>
+            <p>La batterie LiPo alimente les moteurs, tandis que la logique recoit une tension 5V regulee.</p>
+          </div>
+        </article>
+        <article class="mini-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div>
+            <h3>Protection du signal</h3>
+            <p>Les condensateurs de decouplage limitent les parasites produits par les moteurs.</p>
+          </div>
+        </article>
+        <article class="mini-card">
+          <i class="fa-solid fa-wave-square"></i>
+          <div>
+            <h3>Commande PWM</h3>
+            <p>Les sorties PWM du Pico modulent la vitesse de chaque roue via le TB6612FNG.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>ORC 2026 - Team The Winners</p>
+  </footer>
+</body>
+</html>

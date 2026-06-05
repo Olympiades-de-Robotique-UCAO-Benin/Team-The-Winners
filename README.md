@@ -17,12 +17,12 @@
 
 **Team The Winners** est l'une des 6 équipes participantes à l'**Olympiade de Robotique UCAO 2026 (ORU 2026)**, compétition inter-facultés organisée à l'Université Catholique de l'Afrique de l'Ouest — Unité Universitaire du Bénin.
 
-| Informations | Détails |
-|---|---|
-| Compétition | Olympiade de Robotique UCAO 2026 |
-| Institution | UCAO-UUC Bénin |
-| Catégorie | Suivi de ligne |
-| Statut | Actif |
+| Informations | Détails                          |
+| ------------ | -------------------------------- |
+| Compétition  | Olympiade de Robotique UCAO 2026 |
+| Institution  | UCAO-UUC Bénin                   |
+| Catégorie    | Suivi de ligne                   |
+| Statut       | Actif                            |
 
 ---
 
@@ -44,6 +44,23 @@ Pour toute question concernant la compétition :
 
 <div align="center">
 
-*ORU 2026 — Olympiade de Robotique UCAO-UUC Bénin*
+_ORU 2026 — Olympiade de Robotique UCAO-UUC Bénin_
 
 </div>
+
+---
+
+## 🚀 Déploiement (GitHub Pages)
+
+- Activer GitHub Pages dans les paramètres du dépôt en choisissant la branche `main` et le dossier `/ (root)`.
+- L'index s'affichera ensuite à `https://<owner>.github.io/Team-The-Winners/`.
+
+Aperçu local :
+
+```bash
+# depuis la racine du projet
+python -m http.server 8000
+# puis ouvrir http://localhost:8000/
+```
+
+Si tu veux, je peux aussi préparer un template Jekyll/Eleventy ou un petit script `deploy.sh`.

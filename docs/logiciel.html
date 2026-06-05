@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logiciel — Team The Winners (ORC 2026)</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="topbar">
+    <a href="../index.html" class="topbar-logo">
+      <i class="fa-solid fa-robot"></i> THE WINNERS<span>.</span>
+    </a>
+    <div class="topbar-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="algorithme.html">Algorithme</a>
+      <a href="capteurs.html">Capteurs</a>
+      <a href="electronique.html">Électronique</a>
+      <a href="mechanique.html">Mécanique</a>
+      <a href="logiciel.html" class="active">Logiciel</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://github.com/Olympiades-de-Robotique-UCAO-Benin/Team-The-Winners" target="_blank" class="btn-github">
+        <i class="fa-brands fa-github"></i> Repository
+      </a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section-head">
+      <div class="hero-badge" style="align-self: center;">
+        <i class="fa-solid fa-code"></i> CODE EMBARQUÉ & FIRMWARE
+      </div>
+      <h2 class="section-title">Structure Logicielle & Compilation</h2>
+      <p class="section-desc">Arborescence du dépôt, organisation modulaire du code source C++ et directives de déploiement.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 30px;">
+      
+      <!-- Card 1: Directory Tree -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-folder-open"></i> Arborescence du Projet
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          Le code source du projet est structuré de façon modulaire afin de faciliter la maintenance et les tests unitaires :
+        </p>
+        <div class="code-container" style="background: #020206; border-radius: 6px; padding: 20px; overflow: auto;">
+          <pre><code style="font-family: var(--font-mono); font-size: 0.85rem; color: #c9d1d9;">
+Team-The-Winners/
+├── firmware/
+│   ├── firmware.ino          <span class="code-comment"># Fichier principal (setup et loop)</span>
+│   ├── config.h              <span class="code-comment"># Déclaration des pins et constantes PID</span>
+│   ├── sensors.cpp           <span class="code-comment"># Fonctions de lecture capteurs IR & Sonar</span>
+│   ├── motors.cpp            <span class="code-comment"># Driver de contrôle moteur (PWM)</span>
+│   └── pid.cpp               <span class="code-comment"># Calculs de boucle fermée PID</span>
+├── lib/
+│   └── HCSR04/               <span class="code-comment"># Librairie locale pour le sonar</span>
+├── examples/
+│   └── test_motors/          <span class="code-comment"># Script de test de calibration moteur</span>
+└── README.md
+          </code></pre>
+        </div>
+      </div>
+
+      <!-- Card 2: Compiling instructions -->
+      <div class="glass-panel" style="padding: 30px;">
+        <h3 style="font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; text-transform: uppercase;">
+          <i class="fa-solid fa-terminal"></i> Instructions de Compilation et Téléversement
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">
+          Le firmware du robot est développé en C++ sous l'écosystème Arduino. Suivez ces étapes pour flasher la Raspberry Pi Pico :
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px; color: var(--text-secondary);">
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-muted); padding: 15px; border-radius: 6px;">
+            <h5 style="font-family: var(--font-tech); color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">Étape 1 : Préparation de l'IDE</h5>
+            <p style="font-size: 0.8rem;">Ouvrez l'Arduino IDE. Allez dans <em>Fichier > Préférences</em> et ajoutez l'URL suivante dans le gestionnaire de cartes supplémentaires :</p>
+            <code style="color: var(--accent); font-size: 0.75rem; font-family: var(--font-mono);">https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json</code>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-muted); padding: 15px; border-radius: 6px;">
+            <h5 style="font-family: var(--font-tech); color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">Étape 2 : Installation de la Carte</h5>
+            <p style="font-size: 0.8rem;">Allez dans <em>Outils > Type de carte > Gestionnaire de carte</em>. Recherchez <strong>Raspberry Pi Pico/RP2040</strong> par Earle Philhower et cliquez sur Installer.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-muted); padding: 15px; border-radius: 6px;">
+            <h5 style="font-family: var(--font-tech); color: var(--text-primary); font-size: 0.85rem; margin-bottom: 5px;">Étape 3 : Flashage du Firmware</h5>
+            <p style="font-size: 0.8rem;">Maintenez le bouton BOOTSEL de la Raspberry Pi Pico enfoncé et connectez-la via USB à votre ordinateur. Un disque amovible apparaîtra. Sélectionnez la carte "Raspberry Pi Pico" dans l'IDE, puis cliquez sur <strong>Téléverser</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>ORC 2026 — Olympiade de Robotique UCAO-UUC Bénin &nbsp;·&nbsp; Projet Académique de Recherche</p>
+    <p>Développé par la Team The Winners. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
